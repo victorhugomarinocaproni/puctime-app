@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">puctime</string>
+    <string name="login_button_text">ENTRAR</string>
+    <string name="email_hint">E-mail</string>
+    <string name="passwd_hint">Senha</string>
+
+</resources>
