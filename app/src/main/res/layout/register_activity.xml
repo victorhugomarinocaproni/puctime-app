@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="#DBC133"
     android:fillViewport="true"
-    tools:context=".RegisterActivity">
+    tools:context=".access.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -132,6 +132,7 @@
             app:layout_constraintVertical_bias="0.5" />
 
         <TextView
+            android:id="@+id/link_to_login_screen_register_layout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
