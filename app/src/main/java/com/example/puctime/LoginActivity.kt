@@ -12,6 +12,8 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         binding = LoginActivityBinding.inflate(layoutInflater)
+
+
         setContentView(binding.root)
 
     }

@@ -1,7 +1,17 @@
 <resources>
     <string name="app_name">puctime</string>
     <string name="login_button_text">ENTRAR</string>
+    <string name="register_button_text">CADASTRAR</string>
+    <string name="name_hint">Nome</string>
+    <string name="worker_id_hint">N° Matrícula</string>
     <string name="email_hint">E-mail</string>
     <string name="passwd_hint">Senha</string>
+    <string name="already_registered_text">Já tem um cadastro? Entre aqui</string>
+    <string name="is_not_registered_yet_text">Não tem uma conta? Clique aqui para se registrar</string>
+    <string name="logo_description">Logo do aplicativo,
+        com PUC escrito grande e um relógio no lugar do C.
+        Abaixo disso, há a palavra campinas escrito e
+        também pontifícia universidade católica com letras menores.
+    </string>
 
 </resources>
