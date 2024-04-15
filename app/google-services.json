@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "216241102108",
+    "project_id": "puctime-84a21",
+    "storage_bucket": "puctime-84a21.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216241102108:android:e61b9754cde6cab43d6ed9",
+        "android_client_info": {
+          "package_name": "com.example.puctime"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBeXLN_PExqOM8f3hAnrJvTgjbAroBbFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,10 +11,12 @@ import androidx.core.content.ContextCompat
 import com.example.puctime.R
 import com.example.puctime.databinding.LoginActivityBinding
 import com.example.puctime.utils.Utils
+import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginActivityBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,11 +47,7 @@ class LoginActivity : AppCompatActivity() {
             19,
             RegisterActivity::class.java
         )
-
-
     }
-
-
 }
 
 
