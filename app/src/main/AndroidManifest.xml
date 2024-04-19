@@ -12,19 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Puctime"
         tools:targetApi="31">
-<!--        <activity-->
-<!--            android:name=".access.RegisterActivity"-->
-<!--            android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
-<!--        <activity android:name=".access.LoginActivity"-->
-<!--            android:exported="true"/>-->
         <activity
-            android:name=".access.LoginActivity"
+            android:name=".access.RegisterActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,7 +21,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".access.RegisterActivity"
+        <activity android:name=".access.LoginActivity"
+            android:exported="true"/>
+<!--        <activity-->
+<!--            android:name=".access.LoginActivity"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+<!--        <activity android:name=".access.RegisterActivity"-->
+<!--            android:exported="true"/>-->
+        <activity android:name=".access.ForgotPasswordActivity"
             android:exported="true"/>
 
     </application>
