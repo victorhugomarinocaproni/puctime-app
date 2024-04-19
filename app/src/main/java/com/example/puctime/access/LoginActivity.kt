@@ -1,22 +1,17 @@
 package com.example.puctime.access
 
-import android.content.Context
+import android.content.Intent
 import android.os.Bundle
-import android.text.SpannableString
-import android.text.style.ForegroundColorSpan
-import android.text.style.UnderlineSpan
-import android.widget.TextView
+import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.puctime.R
 import com.example.puctime.databinding.LoginActivityBinding
 import com.example.puctime.utils.Utils
-import com.google.firebase.auth.FirebaseAuth
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: LoginActivityBinding
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +29,15 @@ class LoginActivity : AppCompatActivity() {
 
         }
 
+
+        val resetPasswdLink = binding.resetPasswdLink
+        resetPasswdLink.setOnClickListener{
+
+            val intent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
         Utils.underlineText(
             this,
             binding.linkToRegisterScreenLoginLayout,
@@ -47,6 +51,11 @@ class LoginActivity : AppCompatActivity() {
             19,
             RegisterActivity::class.java
         )
+    }
+
+    fun onButtonClick(view: View){
+        val scaleAnimation = AnimationUtils.loadAnimation(this, R.anim.button_scale)
+        view.startAnimation(scaleAnimation)
     }
 }
 

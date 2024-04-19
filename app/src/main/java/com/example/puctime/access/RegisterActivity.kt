@@ -2,6 +2,8 @@ package com.example.puctime.access
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.puctime.R
@@ -22,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         FirebaseApp.getInstance() 
-        Log.d("FirebaseConecction", "Conectado ao Firebase: ${(true)}")
+        Log.i("FirebaseConnection", "Conectado ao Firebase: ${(true)}")
 
 
         val registerButton = binding.materialButtonRegisterLayout
@@ -34,7 +36,7 @@ class RegisterActivity : AppCompatActivity() {
             val userWorkerId = binding.textInputEditTextWorkerIdRegisterLayout.text.toString()
             val userPasswd = binding.textInputEditTextPasswdRegisterRegisterLayout.text.toString()
 
-            val user = User(userEmail, userPasswd)
+            val user = User(userEmail, userPasswd, userName, userWorkerId)
             register(user)
         }
 
@@ -56,16 +58,17 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun register(user: User) {
 
-        FirebaseMethods.signUpUser(user.email, user.passwd) { success, errorMessage ->
+        FirebaseMethods.signUpUser(user.email, user.passwd, user.name, user.workerId) { success, errorMessage ->
             if (success) {
                 Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
 
-
+    fun onButtonClick(view: View){
+        val scaleAnimation = AnimationUtils.loadAnimation(this, R.anim.button_scale)
+        view.startAnimation(scaleAnimation)
+    }
 }
