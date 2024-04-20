@@ -1,12 +1,17 @@
 package com.example.puctime.access
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.puctime.R
 import com.example.puctime.databinding.LoginActivityBinding
+import com.example.puctime.infra.FirebaseMethods
+import com.example.puctime.main.MainScreenActivity
 import com.example.puctime.utils.Utils
 
 class LoginActivity : AppCompatActivity() {
@@ -21,17 +26,30 @@ class LoginActivity : AppCompatActivity() {
 
 
         val loginButton = binding.materialButtonLoginLayout
+        val emailField = binding.textInputEditTextEmailLoginLayout
+        val passwdField = binding.textInputEditTextPasswdLoginLayout
 
         loginButton.setOnClickListener {
 
-            val userEmail = binding.textInputEditTextEmailLoginLayout.text.toString()
-            val userPasswd = binding.textInputEditTextPasswdLoginLayout.text.toString()
+            val userEmail = emailField.text.toString().trim()
+            val userPasswd = passwdField.text.toString().trim()
 
+            if (userEmail.isEmpty()) {
+                emailField.error = "O campo 'e-mail' deve estar preenchido"
+            }
+
+            if (userPasswd.isEmpty()) {
+                passwdField.error = "O campo 'senha' deve estar preenchido"
+            }
+
+            if (userEmail.isNotEmpty() && userPasswd.isNotEmpty()) {
+                login(userEmail, userPasswd, this)
+            }
         }
 
 
         val resetPasswdLink = binding.resetPasswdLink
-        resetPasswdLink.setOnClickListener{
+        resetPasswdLink.setOnClickListener {
 
             val intent = Intent(this, ForgotPasswordActivity::class.java)
             startActivity(intent)
@@ -53,10 +71,43 @@ class LoginActivity : AppCompatActivity() {
         )
     }
 
-    fun onButtonClick(view: View){
+    override fun onStart() {
+        super.onStart()
+
+        FirebaseMethods.getUserConnection{ connected ->
+            if(connected){
+                val intent = Intent(this, MainScreenActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+    }
+
+    private fun login(email: String, passwd: String, context: Context) {
+        FirebaseMethods.loginUser(email, passwd){ success, errorMessage ->
+
+            if(success){
+                val intent = Intent(this, MainScreenActivity::class.java)
+                startActivity(intent)
+                finish()
+            } else {
+                errorMessage?.let {
+                    Log.i("loginFail", errorMessage)
+                    Toast.makeText(this, "Falha ao realizar login", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    fun onButtonClick(view: View) {
         val scaleAnimation = AnimationUtils.loadAnimation(this, R.anim.button_scale)
         view.startAnimation(scaleAnimation)
     }
+
+
 }
+
+
+
 
 

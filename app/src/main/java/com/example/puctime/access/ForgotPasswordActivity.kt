@@ -2,7 +2,10 @@ package com.example.puctime.access
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.puctime.databinding.ForgotPasswordActivityBinding
 import com.example.puctime.infra.FirebaseMethods
@@ -27,15 +30,27 @@ class ForgotPasswordActivity : AppCompatActivity() {
             if(userEmail.isEmpty()){
                 emailField.error = "Este campo não poder estar vazio"
             } else {
-                ResetPassword(userEmail, this)
+                resetPassword(userEmail)
             }
         }
     }
 
+    private fun resetPassword(email: String){
+        FirebaseMethods.sendEmailResetPasswd(email) { success, errorMessage ->
+            if(success){
+                Toast.makeText(this, "E-mail de alteração de senha enviado para: $email", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+                finish()
 
-    private fun ResetPassword(email: String, context: Context){
-        FirebaseMethods.sendEmailResetPasswd(email, context)
-        finish()
+            } else {
+                if(errorMessage != null){
+                    Log.i("resetPasswdEmailFail", errorMessage)
+                }
+                Toast.makeText(this, "Falha ap enviar e-mail de alteração de senha", Toast.LENGTH_SHORT).show()
+
+            }
+        }
     }
 
 

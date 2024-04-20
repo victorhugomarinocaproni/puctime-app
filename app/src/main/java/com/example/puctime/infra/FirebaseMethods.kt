@@ -1,10 +1,7 @@
 package com.example.puctime.infra
 
 import android.content.Context
-import android.content.Intent
 import android.util.Log
-import android.widget.Toast
-import com.example.puctime.access.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -55,17 +52,40 @@ object FirebaseMethods {
     }
 
 
-    fun sendEmailResetPasswd(email: String, context: Context) {
+    fun sendEmailResetPasswd(email: String, callback: (Boolean, String?) -> Unit) {
         auth.sendPasswordResetEmail(email)
-            .addOnSuccessListener {
-                Toast.makeText(context, "E-mail de recuperação enviado para: $email", Toast.LENGTH_SHORT).show()
-                val intent = Intent(context, LoginActivity::class.java)
-                context.startActivity(intent)
-            }
-            .addOnFailureListener {
-                val error = it.message.toString()
-                Toast.makeText(context, "E-mail inválido. Erro: $error", Toast.LENGTH_SHORT).show()
+            .addOnCompleteListener{ task ->
+                if(task.isSuccessful){
+                    callback(true, null)
+                } else {
+                    val errorMessage = task.exception?.message
+                    callback(false, errorMessage)
+                }
             }
     }
 
+    fun loginUser(email: String, passwd: String, callback: (Boolean, String?) -> Unit) {
+
+        auth.signInWithEmailAndPassword(email, passwd)
+            .addOnCompleteListener { task ->
+
+                if(task.isSuccessful){
+                    callback(true, null)
+                } else {
+                    callback(false, task.exception?.message)
+                }
+            }
+    }
+
+    fun getUserConnection(callback: (Boolean) -> Unit) {
+        if(auth.currentUser != null){
+            callback(true)
+        } else {
+            callback(false)
+        }
+    }
+
+    fun signOutUser() {
+        auth.signOut()
+    }
 }

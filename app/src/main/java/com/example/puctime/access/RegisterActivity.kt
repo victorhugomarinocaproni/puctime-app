@@ -1,5 +1,6 @@
 package com.example.puctime.access
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.puctime.R
 import com.example.puctime.databinding.RegisterActivityBinding
 import com.example.puctime.infra.FirebaseMethods
+import com.example.puctime.main.MainScreenActivity
 import com.example.puctime.model.User
 import com.example.puctime.utils.Utils
 import com.google.firebase.FirebaseApp
@@ -61,6 +63,20 @@ class RegisterActivity : AppCompatActivity() {
         FirebaseMethods.signUpUser(user.email, user.passwd, user.name, user.workerId) { success, errorMessage ->
             if (success) {
                 Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show()
+
+                FirebaseMethods.loginUser(user.email, user.passwd){ loginSuccess, loginErrorMessage ->
+                    if(loginSuccess){
+                        val intent = Intent(this, MainScreenActivity::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        loginErrorMessage?.let{
+                            Log.i("autoLoginFail", loginErrorMessage)
+                            Toast.makeText(this, "Erro ao loggar automaticamente", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                }
+
             } else {
                 Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
             }
