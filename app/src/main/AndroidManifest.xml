@@ -10,12 +10,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Puctime"
+        android:theme="@style/Base.Theme.Puctime"
         tools:targetApi="31">
-
         <activity
-            android:name=".access.RegisterActivity"
-            android:exported="true">
+            android:name=".access.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,15 +23,15 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".access.LoginActivity"
-            android:exported="true"/>
-
-        <activity android:name=".access.ForgotPasswordActivity"
-            android:exported="true"/>
-
-        <activity android:name=".main.MainScreenActivity"
-            android:exported="true" />
-
+        <activity
+            android:name=".access.RegisterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".access.ForgotPasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".main.MainScreenActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

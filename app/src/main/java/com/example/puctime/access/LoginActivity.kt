@@ -8,6 +8,7 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.example.puctime.R
 import com.example.puctime.databinding.LoginActivityBinding
 import com.example.puctime.infra.FirebaseMethods
@@ -21,9 +22,11 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        Thread.sleep(1000)
+        installSplashScreen()
+
         binding = LoginActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
 
         val loginButton = binding.materialButtonLoginLayout
         val emailField = binding.textInputEditTextEmailLoginLayout
@@ -69,6 +72,14 @@ class LoginActivity : AppCompatActivity() {
             19,
             RegisterActivity::class.java
         )
+
+        Utils.underlineText(
+            this,
+            binding.resetPasswdLink,
+            R.color.dark_blue,
+            0
+        )
+
     }
 
     override fun onStart() {

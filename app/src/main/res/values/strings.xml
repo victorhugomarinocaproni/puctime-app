@@ -14,7 +14,7 @@
         também pontifícia universidade católica com letras menores.
     </string>
     <string name="forgot_password_text">Esqueci minha senha</string>
-    <string name="forgot_passwd_desc_text">Providencie o e-mail da conta que deseja restaurar a senha </string>
+    <string name="forgot_passwd_desc_text">Providencie o e-mail da conta que deseja alterar a senha </string>
     <string name="reset_passwd_button_text">RESETAR SENHA</string>
     <string name="back_text">Back</string>
 

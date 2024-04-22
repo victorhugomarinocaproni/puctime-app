@@ -1,7 +1,5 @@
 package com.example.puctime.access
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -21,6 +19,12 @@ class ForgotPasswordActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val resetPasswdButton = binding.materialButtonForgotPasswdLayout
+        val backButton = binding.backButton
+
+        backButton.setOnClickListener{
+            startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
 
         resetPasswdButton.setOnClickListener {
 

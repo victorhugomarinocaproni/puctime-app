@@ -1,9 +1,17 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Puctime" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
     </style>
 
     <style name="Theme.Puctime" parent="Base.Theme.Puctime" />
+
+
+    <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/light_yellow</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_logo</item>
+        <item name="postSplashScreenTheme">@style/Base.Theme.Puctime</item>
+    </style>
+
+
 </resources>

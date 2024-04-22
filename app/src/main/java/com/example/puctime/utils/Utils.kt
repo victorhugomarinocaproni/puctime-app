@@ -51,4 +51,6 @@ object Utils {
         linkView.movementMethod = LinkMovementMethod.getInstance()
 
     }
+
+
 }
