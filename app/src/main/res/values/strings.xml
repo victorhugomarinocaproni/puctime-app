@@ -17,5 +17,7 @@
     <string name="forgot_passwd_desc_text">Providencie o e-mail da conta que deseja alterar a senha </string>
     <string name="reset_passwd_button_text">RESETAR SENHA</string>
     <string name="back_text">Back</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
