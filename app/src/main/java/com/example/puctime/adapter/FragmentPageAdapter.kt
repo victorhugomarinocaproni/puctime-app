@@ -5,7 +5,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.puctime.frag.ClockInFragment
-import com.example.puctime.frag.MainMenuFragment
+import com.example.puctime.frag.CalendarOverviewFragment
 
 class FragmentPageAdapter(
     fragmentManager: FragmentManager,
@@ -18,7 +18,7 @@ class FragmentPageAdapter(
 
     override fun createFragment(position: Int): Fragment {
         return if (position == 0) {
-            MainMenuFragment()
+            CalendarOverviewFragment()
         } else {
             ClockInFragment()
         }

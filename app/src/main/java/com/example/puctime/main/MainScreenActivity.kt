@@ -3,8 +3,11 @@ package com.example.puctime.main
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.viewpager2.widget.ViewPager2
 import androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback
+import com.example.puctime.R
 import com.example.puctime.access.LoginActivity
 import com.example.puctime.adapter.FragmentPageAdapter
 import com.example.puctime.databinding.MainScreenActivityBinding
@@ -12,6 +15,7 @@ import com.example.puctime.infra.FirebaseMethods
 import com.google.android.material.tabs.TabLayout
 
 class MainScreenActivity : AppCompatActivity() {
+
 
     private lateinit var tabLayout : TabLayout
     private lateinit var viewPager2 : ViewPager2
@@ -36,7 +40,6 @@ class MainScreenActivity : AppCompatActivity() {
                 if(tab != null){
                     viewPager2.currentItem = tab.position
                 }
-
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
