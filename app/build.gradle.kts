@@ -64,5 +64,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.0")
 
-
+    // SnapTimePicker -> time picker com scroll
+    implementation("com.akexorcist:snap-time-picker:1.0.3")
 }

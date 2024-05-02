@@ -45,11 +45,14 @@
         app:layout_constraintTop_toBottomOf="@id/check_in_label">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/check_in_time_text"
+            android:id="@+id/defaultTimePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:drawableStart="@drawable/baseline_access_time_24"
-            android:drawablePadding="10dp" />
+            android:drawablePadding="10dp"
+            android:focusable="false"
+            android:inputType="none" />
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -67,13 +70,63 @@
         app:layout_constraintTop_toBottomOf="@id/check_in_time_layout">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/check_out_time_text"
+            android:id="@+id/customTimePicker"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:clickable="true"
             android:drawableStart="@drawable/baseline_access_time_24"
-            android:drawablePadding="10dp" />
+            android:drawablePadding="10dp"
+            android:focusable="false"
+            android:inputType="none" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <TextView
+        android:id="@+id/selected_time_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Your selected time is"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/check_out_time_layout" />
+
+    <TextView
+        android:id="@+id/selectedTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/selected_time_text" />
+
+    <!--    <Button-->
+    <!--        android:id="@+id/defaultTimePicker"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center_horizontal"-->
+    <!--        android:layout_marginStart="104dp"-->
+    <!--        android:layout_marginBottom="112dp"-->
+    <!--        android:text="Default Time Picker"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/customTimePicker"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.0"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
+
+    <!--    <Button-->
+    <!--        android:id="@+id/customTimePicker"-->
+    <!--        android:layout_width="200dp"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_gravity="center_horizontal"-->
+    <!--        android:layout_marginStart="104dp"-->
+    <!--        android:layout_marginBottom="212dp"-->
+    <!--        android:text="Custom Time Picker"-->
+    <!--        android:textAllCaps="false"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

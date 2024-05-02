@@ -2,6 +2,8 @@ package com.example.puctime.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.akexorcist.snaptimepicker.SnapTimePickerDialog
+import com.example.puctime.R
 import com.example.puctime.databinding.ActivityClockInFormBinding
 
 
@@ -14,29 +16,57 @@ class ClockInFormActivity : AppCompatActivity() {
         binding = ActivityClockInFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val checkInTimer = binding.checkInTimeText
-        val checkOutTimer = binding.checkOutTimeText
+        val defaultTimePicker = binding.defaultTimePicker
+        val customTimePicker = binding.customTimePicker
 
-//        checkInTimer.setOnClickListener {
-//
-//            val calendar = Calendar.getInstance()
-//            val timePickerDialog = TimePickerDialog(
-//                /* context = */ this,
-//                /* listener = */ { _, hourOfDay, minute ->
-//                    calendar.apply {
-//                        set(Calendar.HOUR_OF_DAY, hourOfDay)
-//                        set(Calendar.MINUTE, minute)
-//                    }
-//                    val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.time)
-//                    checkInTimer.text = formattedTime
-//                },
-//                /* hourOfDay = */ calendar.get(Calendar.HOUR_OF_DAY),
-//                /* minute = */ calendar.get(Calendar.MINUTE),
-//                /* is24HourView = */ false
-//            )
-//            timePickerDialog.show()
-//        }
+        defaultTimePicker.setOnClickListener {
+            // Default TimePicker
+            SnapTimePickerDialog.Builder().apply {
+                setTitle(R.string.title)
+                setTitleColor(android.R.color.white)
+            }.build().apply {
+                setListener {
+                        hour, minute ->
+                    onTimePicked(hour, minute)
+                }
+            }.show(
+                supportFragmentManager,
+                SnapTimePickerDialog.TAG
+            )
+        }
+
+        customTimePicker.setOnClickListener {
+            SnapTimePickerDialog.Builder().apply {
+                setTitle(R.string.title)
+                setTitleColor(android.R.color.black)
+            }.build().apply {
+                setListener {
+                        hour, minute ->
+                    onTimePicked(hour, minute)
+                }
+            }.show(
+                supportFragmentManager,
+                SnapTimePickerDialog.TAG
+            )
+        }
 
     }
+
+    private fun onTimePicked(selectedHour: Int, selectedMinute: Int) {
+
+        val selectedTime = binding.selectedTime
+
+        val hour = selectedHour.toString()
+            .padStart(2, '0')
+        val minute = selectedMinute.toString()
+            .padStart(2, '0')
+        selectedTime.text = String.format(
+            getString(
+                R.string.selected_time_format,
+                hour, minute
+            )
+        )
+    }
 }
+
 
