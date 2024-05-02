@@ -1,13 +1,8 @@
 package com.example.puctime.main
 
-import android.app.TimePickerDialog
-import android.icu.util.Calendar
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.puctime.databinding.ActivityClockInFormBinding
-import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
-import java.util.Locale
 
 
 class ClockInFormActivity : AppCompatActivity() {
