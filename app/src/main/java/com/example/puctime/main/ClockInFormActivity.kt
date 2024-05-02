@@ -22,25 +22,25 @@ class ClockInFormActivity : AppCompatActivity() {
         val checkInTimer = binding.checkInTimeText
         val checkOutTimer = binding.checkOutTimeText
 
-        checkInTimer.setOnClickListener {
-
-            val calendar = Calendar.getInstance()
-            val timePickerDialog = TimePickerDialog(
-                /* context = */ this,
-                /* listener = */ { _, hourOfDay, minute ->
-                    calendar.apply {
-                        set(Calendar.HOUR_OF_DAY, hourOfDay)
-                        set(Calendar.MINUTE, minute)
-                    }
-                    val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.time)
-                    checkInTimer.text = formattedTime
-                },
-                /* hourOfDay = */ calendar.get(Calendar.HOUR_OF_DAY),
-                /* minute = */ calendar.get(Calendar.MINUTE),
-                /* is24HourView = */ false
-            )
-            timePickerDialog.show()
-        }
+//        checkInTimer.setOnClickListener {
+//
+//            val calendar = Calendar.getInstance()
+//            val timePickerDialog = TimePickerDialog(
+//                /* context = */ this,
+//                /* listener = */ { _, hourOfDay, minute ->
+//                    calendar.apply {
+//                        set(Calendar.HOUR_OF_DAY, hourOfDay)
+//                        set(Calendar.MINUTE, minute)
+//                    }
+//                    val formattedTime = SimpleDateFormat("hh:mm a", Locale.getDefault()).format(calendar.time)
+//                    checkInTimer.text = formattedTime
+//                },
+//                /* hourOfDay = */ calendar.get(Calendar.HOUR_OF_DAY),
+//                /* minute = */ calendar.get(Calendar.MINUTE),
+//                /* is24HourView = */ false
+//            )
+//            timePickerDialog.show()
+//        }
 
     }
 }
