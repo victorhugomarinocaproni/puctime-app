@@ -13,5 +13,30 @@
         Abaixo disso, há a palavra campinas escrito e
         também pontifícia universidade católica com letras menores.
     </string>
+    <string name="forgot_password_text">Esqueci minha senha</string>
+    <string name="forgot_passwd_desc_text">Providencie o e-mail da conta que deseja alterar a senha </string>
+    <string name="reset_passwd_button_text">RESETAR SENHA</string>
+    <string name="back_text">Back</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Snap time picker -->
+    <string name="title">Please select the time</string>
+    <string name="selected_time_prefix">Your selected time is</string>
+    <!-- %1$s:%2$s will add the string in HH:MM format
+    for more understanding follow the link at the end -->
+    <string name="selected_time_format">%1$s:%2$s</string>
+
+    <!-- AutoCompleteTextView Dias da Semana -->
+
+    <string-array name="week_days">
+        <item>Segunda-feira</item>
+        <item>Terça-feira</item>
+        <item>Quarta-feira</item>
+        <item>Quinta-feira</item>
+        <item>Sexta-feira</item>
+        <item>Sábado</item>
+    </string-array>
+
 
 </resources>

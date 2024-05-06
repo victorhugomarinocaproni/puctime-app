@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DBC133"
+    android:background="@color/light_yellow"
     tools:context=".access.LoginActivity">
 
     <ImageView
@@ -26,6 +26,8 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="50dp"
         android:hint="@string/email_hint"
+        android:textColorHint="@color/black"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/app_logo_login">
@@ -34,7 +36,8 @@
             android:id="@+id/text_input_edit_text_email_login_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            app:hintTextColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -46,6 +49,8 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="50dp"
         android:hint="@string/passwd_hint"
+        android:textColorHint="@color/black"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_input_layout_email_login_layout"
@@ -55,7 +60,8 @@
             android:id="@+id/text_input_edit_text_passwd_login_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            app:hintTextColor="@color/black" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -66,10 +72,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
         android:layout_marginEnd="80dp"
-        android:background="@drawable/rounded_square_button"
+        android:background="@drawable/rounded_button"
         android:text="@string/login_button_text"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        app:backgroundTint="#22498A"
+        app:backgroundTint="@color/dark_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -85,11 +92,28 @@
         android:layout_marginEnd="50dp"
         android:text="@string/is_not_registered_yet_text"
         android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorLink="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/material_button_login_layout"
         app:layout_constraintVertical_bias="0.15" />
+
+    <TextView
+        android:id="@+id/reset_passwd_link"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="onButtonClick"
+        android:text="@string/forgot_password_text"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textColorLink="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/link_to_register_screen_login_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -49,6 +49,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.fragment)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -56,4 +59,11 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.8.1"))
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-firestore")
+    implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.4.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.4.0")
+
+    // SnapTimePicker -> time picker com scroll
+    implementation("com.akexorcist:snap-time-picker:1.0.3")
 }

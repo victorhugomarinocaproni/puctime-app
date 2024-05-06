@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".main.ClockInFormActivity">
+
+    <TextView
+        android:id="@+id/clock_in_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="CRIAR NOVO APONTAMENTO"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/check_in_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Preencha os dados"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clock_in_title" />
+
+    <LinearLayout
+        android:id="@+id/check_in_time_box"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/input_time_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_in_label">
+
+        <ImageView
+            android:id="@+id/clock_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/baseline_access_time_24" />
+
+        <TextView
+            android:id="@+id/check_in_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:text="Horário de Início"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/check_in_selected_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:text="hh:mm" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/check_out_time_box"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:background="@drawable/input_time_box"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/check_in_time_box">
+
+        <ImageView
+            android:id="@+id/clock_img2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="18dp"
+            android:src="@drawable/baseline_access_time_24" />
+
+        <TextView
+            android:id="@+id/check_out_time_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="16dp"
+            android:text="Horário de Término"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/check_out_selected_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="20dp"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            tools:text="hh:mm" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/clock_in_input_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:hint="Nome do Apontamento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/check_out_time_box">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/clock_in_name_text"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/week_days_input_layout"
+        style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="40dp"
+        android:hint="Dias da Semana"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clock_in_input_layout">
+
+        <AutoCompleteTextView
+            android:id="@+id/week_days_actv"
+            android:layout_width="match_parent"
+            android:layout_height="62dp"
+            android:layout_weight="1"
+            android:inputType="none" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/save_clock_in_button"
+        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="60dp"
+        android:backgroundTint="@color/light_blue"
+        android:text="SALVAR"
+        app:cornerRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/week_days_input_layout" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -25,16 +25,6 @@ object Utils {
         textView.text = spannableString
     }
 
-    fun changeTextColor(context: Context, textView: TextView, color: Int, start: Int) {
-
-        val spannableString = SpannableString(textView.text.toString())
-        val length = textView.text.toString().length
-        val textColor = ContextCompat.getColor(context, color)
-
-        spannableString.setSpan(ForegroundColorSpan(textColor), start, length, 0)
-        textView.text = spannableString
-    }
-
     fun setLinkClickable(
         activity: Activity,
         linkView: TextView,
@@ -44,7 +34,6 @@ object Utils {
 
         val text = linkView.text
         val length = linkView.text.toString().length
-
 
         val spannableString = SpannableString(text)
 
@@ -62,4 +51,6 @@ object Utils {
         linkView.movementMethod = LinkMovementMethod.getInstance()
 
     }
+
+
 }
