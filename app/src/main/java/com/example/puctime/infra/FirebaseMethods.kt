@@ -1,13 +1,16 @@
 package com.example.puctime.infra
 
-import android.content.Context
 import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 
 object FirebaseMethods {
 
     private val auth = FirebaseAuth.getInstance()
+    private val firebase = Firebase.auth
 
     fun signUpUser(
         email: String,
@@ -16,8 +19,6 @@ object FirebaseMethods {
         workerId: String,
         callback: (Boolean, String?) -> Unit
     ) {
-
-
         auth.createUserWithEmailAndPassword(email, passwd)
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
@@ -50,7 +51,6 @@ object FirebaseMethods {
                 }
             }
     }
-
 
     fun sendEmailResetPasswd(email: String, callback: (Boolean, String?) -> Unit) {
         auth.sendPasswordResetEmail(email)
@@ -85,7 +85,18 @@ object FirebaseMethods {
         }
     }
 
+    fun returnUserId() : String {
+        val user = firebase.currentUser
+        user?.let {
+
+            return it.uid
+        }
+        return "null"
+    }
+
     fun signOutUser() {
         auth.signOut()
     }
+
+
 }

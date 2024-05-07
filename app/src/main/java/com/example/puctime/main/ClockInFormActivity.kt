@@ -10,16 +10,28 @@ import androidx.core.view.isEmpty
 import com.akexorcist.snaptimepicker.SnapTimePickerDialog
 import com.example.puctime.R
 import com.example.puctime.databinding.ActivityClockInFormBinding
+import com.example.puctime.infra.FirebaseMethods
+import com.example.puctime.model.Clockin
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.database
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 
 class ClockInFormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityClockInFormBinding
+    private lateinit var database: DatabaseReference
+    private lateinit var userId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityClockInFormBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        database = Firebase.database.reference
+
 
         val checkInTime = binding.checkInTimeBox
         val checkOutTime = binding.checkOutTimeBox
@@ -53,7 +65,12 @@ class ClockInFormActivity : AppCompatActivity() {
                 Log.d("clockInFormData", clockInNametext)
                 Log.d("clockInFormData", dayOfTheWeekSelectedText)
 
-                Toast.makeText(this, "Apontamento criado", Toast.LENGTH_SHORT).show()
+                registerNewClockin(
+                    checkInTimeText,
+                    checkOutTimetext,
+                    clockInNametext,
+                    dayOfTheWeekSelectedText
+                )
             } else {
                 Toast.makeText(this, "Erro ao criar apontamento", Toast.LENGTH_SHORT).show()
 
@@ -132,6 +149,36 @@ class ClockInFormActivity : AppCompatActivity() {
         )
         checkOutSelectedTime.text = selectedTime
     }
+
+    private fun registerNewClockin(
+        horarioInicio: String,
+        horarioTermino: String,
+        nome: String,
+        diaDaSemana: String
+    ) {
+
+        userId = FirebaseMethods.returnUserId()
+
+        if (userId == "null") {
+            Toast.makeText(this, "Erro, usuário não encontrado", Toast.LENGTH_SHORT).show()
+        } else {
+
+            val clockInRef = database.child("users").child(userId).child("apontamentos").push()
+
+            val clockIn = Clockin(horarioInicio, horarioTermino, nome, diaDaSemana)
+
+            clockInRef.setValue(clockIn.toMap())
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Apontamento criado", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener { error ->
+                    Log.e("ClockInError", "Erro ao registrar novo apontamento: $error")
+                }
+
+        }
+    }
+
 }
+
 
 

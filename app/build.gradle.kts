@@ -63,6 +63,7 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.0")
+    implementation("com.google.firebase:firebase-database-ktx")
 
     // SnapTimePicker -> time picker com scroll
     implementation("com.akexorcist:snap-time-picker:1.0.3")
