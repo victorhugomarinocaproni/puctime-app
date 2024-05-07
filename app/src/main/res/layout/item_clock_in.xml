@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="130dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view_item"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        app:cardBackgroundColor="@color/medium_gray"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="11dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/clock_in_card_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                tools:text="Aula de Arquitetura de Computadores" />
+
+            <TextView
+                android:id="@+id/day_of_the_week_card_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                tools:text="Terça-Feira" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/chech_in_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0.3"
+                    android:text="Horário Entrada:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/check_in_card_selected_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    tools:text="17:35" />
+
+                <TextView
+                    android:id="@+id/check_out_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="Horário Saída:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/check_out_card_selected_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    tools:text="23:59" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
