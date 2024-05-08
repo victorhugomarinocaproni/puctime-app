@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:background="@color/light_yellow"
     android:fillViewport="true"
-    tools:context=".access.RegisterActivity">
+    tools:context=".ui.access.RegisterActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -118,7 +118,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:maxLength="10"
                 android:textColor="@color/black" />
 
         </com.google.android.material.textfield.TextInputLayout>

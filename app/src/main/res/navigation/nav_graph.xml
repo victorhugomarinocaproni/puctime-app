@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/calendarOverviewFragment"
-        android:name="com.example.puctime.frag.CalendarOverviewFragment"
+        android:name="com.example.puctime.ui.fragments.CalendarOverviewFragment"
         android:label="fragment_calendar_overview"
         tools:layout="@layout/fragment_calendar_overview" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/clockInFormFragment"
-        android:name="com.example.puctime.main.ClockInFormActivity"
+        android:name="com.example.puctime.ui.main.ClockInFormActivity"
         android:label="fragment_clock_in_form"
         tools:layout="@layout/activity_clock_in_form" />
 </navigation>

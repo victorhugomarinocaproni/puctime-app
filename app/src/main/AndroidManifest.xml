@@ -13,7 +13,7 @@
         android:theme="@style/Base.Theme.Puctime"
         tools:targetApi="31">
         <activity
-            android:name=".access.LoginActivity"
+            android:name=".ui.access.LoginActivity"
             android:exported="true"
             android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
@@ -23,16 +23,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".access.RegisterActivity"
+            android:name=".ui.access.RegisterActivity"
             android:exported="false" />
         <activity
-            android:name=".access.ForgotPasswordActivity"
+            android:name=".ui.access.ForgotPasswordActivity"
             android:exported="false" />
         <activity
-            android:name=".main.MainScreenActivity"
+            android:name=".ui.main.MainScreenActivity"
             android:exported="false" />
         <activity
-            android:name=".main.ClockInFormActivity"
+            android:name=".ui.main.ClockInFormActivity"
             android:exported="false" />
     </application>
 

@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.Puctime" parent="Theme.Material3.DayNight.NoActionBar">
-
+        <item name="android:statusBarColor">@color/light_yellow</item>
     </style>
 
     <style name="Theme.Puctime" parent="Base.Theme.Puctime" />
@@ -9,9 +9,22 @@
 
     <style name="Theme.App.SplashScreen" parent="Theme.SplashScreen">
         <item name="windowSplashScreenBackground">@color/light_yellow</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_logo</item>
+        <item name="android:windowBackground">@drawable/logo_splash_screen</item>
         <item name="postSplashScreenTheme">@style/Base.Theme.Puctime</item>
     </style>
 
+    <!--  Bottom Sheet  -->
+
+    <style name="BottomSheetStyle" parent="Theme.Design.BottomSheetDialog">
+
+        <item name="bottomSheetStyle">@style/Modal</item>
+
+    </style>
+
+    <style name="Modal" parent="Widget.Design.BottomSheet.Modal">
+
+        <item name="android:background">@drawable/bottom_sheet_bg</item>
+
+    </style>
 
 </resources>
