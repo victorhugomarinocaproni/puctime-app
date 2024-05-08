@@ -23,7 +23,6 @@ class ClockinRepository {
 
 
     // Garante que vai instanciar um repositório! Se tiver "null" cria um novo, senão só mantem
-
     fun getInstance() : ClockinRepository{
         return INSTANCE ?: synchronized(this) {
 
@@ -59,5 +58,31 @@ class ClockinRepository {
             }
         })
         return clockinList
+    }
+
+    fun getAllClockinHashCodes() : LiveData<List<String>>{
+
+        val hashCodesList = MutableLiveData<List<String>>()
+
+        clockinRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                try {
+
+                    val _hashCodesList: List<String> = snapshot.children.map { dataSnapshot ->
+                        dataSnapshot.key.toString()
+                    }
+                    hashCodesList.postValue(_hashCodesList)
+                } catch (e : Exception){
+                    Log.e("error_loading_hashCodes", e.message.toString())
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+        return hashCodesList
     }
 }

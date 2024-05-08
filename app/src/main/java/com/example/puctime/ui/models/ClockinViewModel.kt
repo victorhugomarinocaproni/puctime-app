@@ -9,4 +9,5 @@ class ClockinViewModel : ViewModel() {
 
     private val repository: ClockinRepository = ClockinRepository().getInstance()
     val allClockin: LiveData<List<Clockin>> = repository.loadUserClockInData()
+    val allHashCodes: LiveData<List<String>> = repository.getAllClockinHashCodes()
 }

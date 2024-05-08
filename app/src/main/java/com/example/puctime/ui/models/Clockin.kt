@@ -6,7 +6,19 @@ data class Clockin (
     val nome: String = "",
     val diaDaSemana: String = "",
     val dataCriacaoAponamento: String = "",
+    val id: String = ""
 ) {
+
+    private var hash = ""
+
+    init{
+        gerarClockinId()
+    }
+
+    private fun gerarClockinId(){
+        val data = toMap()
+        hash = data.hashCode().toString()
+    }
 
     fun toMap(): Map<String, Any> {
         val map = HashMap<String, Any>()
@@ -15,6 +27,7 @@ data class Clockin (
         map["horarioInicio"] = horarioInicio
         map["horarioTermino"] = horarioTermino
         map["dataCriacaoAponamento"] = dataCriacaoAponamento
+        map["id"] = hash
         return map
     }
 }
