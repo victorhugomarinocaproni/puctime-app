@@ -22,11 +22,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/sheet_confirmation_text"
+        android:id="@+id/sheet_entrace_confirmation_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Tem certeza que deseja bater o ponto?"
+        android:text="Tem certeza que deseja registrar sua entrada?"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -38,7 +38,7 @@
         android:id="@+id/register_clockin_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="10dp"
         android:backgroundTint="@color/green"
         android:paddingStart="60dp"
         android:paddingEnd="60dp"
@@ -47,7 +47,7 @@
         app:cornerRadius="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/sheet_confirmation_text" />
+        app:layout_constraintTop_toBottomOf="@id/sheet_entrace_confirmation_text" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

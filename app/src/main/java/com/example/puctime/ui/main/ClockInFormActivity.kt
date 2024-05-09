@@ -182,15 +182,12 @@ class ClockInFormActivity : AppCompatActivity() {
                 .addOnSuccessListener {
                     Toast.makeText(this, "Apontamento criado", Toast.LENGTH_SHORT).show()
                     progressView.visibility = View.GONE
-
                 }
                 .addOnFailureListener { error ->
                     Log.e("ClockInError", "Erro ao registrar novo apontamento: $error")
                 }
-
         }
     }
-
 }
 
 

@@ -10,6 +10,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.puctime.R
 import com.example.puctime.ui.interfaces.OnItemClickListener
 import com.example.puctime.ui.models.Clockin
+import java.sql.Timestamp
+import java.time.Instant
+import java.time.Instant.now
 
 class DailyClockInAdapter : RecyclerView.Adapter<DailyClockInAdapter.CardViewHolder>() {
 
@@ -36,7 +39,7 @@ class DailyClockInAdapter : RecyclerView.Adapter<DailyClockInAdapter.CardViewHol
         holder.checkOutText.text = currentItem.horarioTermino
         holder.itemView.setOnClickListener{ view ->
 
-            Toast.makeText(view.context, "Hash: ${clockInList[position].id}", Toast.LENGTH_SHORT).show()
+//            Toast.makeText(view.context, "Hash: ${clockInList[position].id}", Toast.LENGTH_SHORT).show()
             itemClickListener?.onItemClick(currentItem)
         }
     }
@@ -54,12 +57,37 @@ class DailyClockInAdapter : RecyclerView.Adapter<DailyClockInAdapter.CardViewHol
 
     fun setData(data: List<Clockin>){
         clockInList.clear()
-        clockInList.addAll(data)
+        val today = convertInstantTime()
+        for(clockin in data){
+
+            if(clockin.diaDaSemana == today){
+                clockInList.add(clockin)
+            }
+        }
         notifyDataSetChanged()
     }
 
     fun setOnItemClickListener(listener: OnItemClickListener){
         this.itemClickListener = listener
+    }
+
+    private fun convertInstantTime() : String{
+
+        val today = Timestamp.from(now()).toString()
+        val day = today.substring(0, 3)
+
+        if(day == "Mon") return "Segunda-feira"
+
+        if(day == "Tue") return "Terça-feira"
+
+        if(day == "Wed") return "Quarta-feira"
+
+        if(day == "Thu") return "Quinta-feira"
+
+        if(day == "Fri") return "Sexta-feira"
+
+        return "Sábado"
+
     }
 
 

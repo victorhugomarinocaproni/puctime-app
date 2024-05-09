@@ -1,32 +1,28 @@
 package com.example.puctime.ui.models
 
-data class Clockin (
-    val horarioInicio: String = "",
-    val horarioTermino: String = "",
+data class ClockinRegister(
     val nome: String = "",
     val diaDaSemana: String = "",
-    val dataCriacaoAponamento: String = "",
+    val timestamp: String = "",
     val id: String = ""
 ) {
 
     private var _id = ""
 
     init{
-        gerarClockinId()
+        gerarIdRegistroClockin()
     }
 
-    private fun gerarClockinId(){
+    private fun gerarIdRegistroClockin(){
         val data = toMap()
         _id = data.hashCode().toString()
     }
 
     fun toMap(): Map<String, Any> {
         val map = HashMap<String, Any>()
-        map["diaDaSemana"] = diaDaSemana
         map["nome"] = nome
-        map["horarioInicio"] = horarioInicio
-        map["horarioTermino"] = horarioTermino
-        map["dataCriacaoAponamento"] = dataCriacaoAponamento
+        map["diaDaSemana"] = diaDaSemana
+        map["timestamp"] = timestamp
         map["id"] = _id
         return map
     }
