@@ -8,5 +8,10 @@
     <color name="light_yellow">#DBC133</color>
     <color name="light_red">#EC3041</color>
     <color name="green">#228C24</color>
-    <color name="medium_gray">#6E6A6A</color>
+
+    <!--  Cores do CardView -->
+    <color name="medium_gray">#9F9D9D</color>
+    <color name="opened_clockin_color">#575711</color>
+    <color name="closed_clockin_color">#115011</color>
+
 </resources>

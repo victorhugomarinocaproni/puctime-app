@@ -4,8 +4,8 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.puctime.infra.FirebaseMethods
-import com.example.puctime.ui.models.Clockin
-import com.example.puctime.ui.models.ClockinRegister
+import com.example.puctime.models.Clockin
+import com.example.puctime.models.ClockinRegister
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -109,6 +109,7 @@ class ClockinRepository {
             saveClockInRef.setValue(clockIn.toMap())
                 .addOnSuccessListener {
                     Log.i("RegistroClockin", "Ponto batido e registrado com sucesso!")
+                    searchForEspecificDocument(clockin.id)
                 }
                 .addOnFailureListener { error ->
                     Log.i("RegistroClockin", "Erro ao registrar o ponto batido ${error}")
@@ -207,4 +208,37 @@ class ClockinRepository {
         return Timestamp(arrivalTimeWithToleranceLong)
 
     }
+
+    private fun searchForEspecificDocument(id: String){
+
+        clockinRef.addValueEventListener(object : ValueEventListener{
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                for(snapshot in dataSnapshot.children){
+
+                    val clockInId = snapshot.child("id").value.toString()
+
+                    if(clockInId == id){
+
+                        val clockInData = snapshot.getValue(Clockin::class.java)
+                        if(clockInData != null) {
+                            snapshot.child("status").ref.setValue("aberto")
+                                .addOnSuccessListener {
+                                    Log.i("RegistroClockin", "Status atualizado para 'aberto'")
+                                }
+                                .addOnFailureListener {
+                                    Log.i("RegistroClockin", "Erro ao atualizar status")
+
+                                }
+                        }
+                        break
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                Log.e("RegistroClockin", "Erro ao ler dados: ${error.message}")
+            }
+        })
+    }
+
 }

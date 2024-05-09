@@ -19,7 +19,7 @@ import com.example.puctime.databinding.FragmentCalendarOverviewBinding
 import com.example.puctime.ui.adapter.DailyClockInAdapter
 import com.example.puctime.ui.interfaces.OnItemClickListener
 import com.example.puctime.ui.main.ClockInFormActivity
-import com.example.puctime.ui.models.Clockin
+import com.example.puctime.models.Clockin
 import com.example.puctime.viewmodel.ClockinViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButton
@@ -27,7 +27,7 @@ import com.google.android.material.button.MaterialButton
 class CalendarOverviewFragment : Fragment() {
 
     private lateinit var viewModel: ClockinViewModel
-    private var myAdapter: DailyClockInAdapter = DailyClockInAdapter()
+    private var myAdapter: DailyClockInAdapter ?= null
     private var sheetDialog: BottomSheetDialog? = null
     private lateinit var progressView: ProgressBar
 
@@ -45,6 +45,8 @@ class CalendarOverviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        myAdapter = DailyClockInAdapter(requireContext())
+
         progressView = binding.progressBar
 
         val createNewClockinButton = binding.calendarFab
@@ -59,9 +61,12 @@ class CalendarOverviewFragment : Fragment() {
         progressView.visibility = View.VISIBLE
 
         viewModel.allClockin.observe(viewLifecycleOwner, Observer { clockinList ->
-            myAdapter.setData(clockinList)
+
+
+            val adapter = myAdapter
+            adapter?.setData(clockinList)
             progressView.visibility = View.GONE
-            myAdapter.setOnItemClickListener(object : OnItemClickListener {
+            adapter?.setOnItemClickListener(object : OnItemClickListener {
                 override fun onItemClick(clockin: Clockin) {
                     showBottomSheetDialog(clockin)
                 }

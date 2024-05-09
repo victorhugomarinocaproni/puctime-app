@@ -1,4 +1,4 @@
-package com.example.puctime.ui.models
+package com.example.puctime.models
 
 data class User (
     val email: String,

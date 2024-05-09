@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.puctime.infra.repository.ClockinRepository
-import com.example.puctime.ui.models.Clockin
+import com.example.puctime.models.Clockin
 
 class ClockinViewModel : ViewModel() {
 

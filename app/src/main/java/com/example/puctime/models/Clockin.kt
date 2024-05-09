@@ -1,4 +1,4 @@
-package com.example.puctime.ui.models
+package com.example.puctime.models
 
 data class Clockin (
     val horarioInicio: String = "",
@@ -6,7 +6,8 @@ data class Clockin (
     val nome: String = "",
     val diaDaSemana: String = "",
     val dataCriacaoAponamento: String = "",
-    val id: String = ""
+    val id: String = "",
+    val status: String = ""
 ) {
 
     private var _id = ""
@@ -28,6 +29,7 @@ data class Clockin (
         map["horarioTermino"] = horarioTermino
         map["dataCriacaoAponamento"] = dataCriacaoAponamento
         map["id"] = _id
+        map["status"] = status
         return map
     }
 }

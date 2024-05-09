@@ -11,7 +11,7 @@ import com.example.puctime.R
 import com.example.puctime.databinding.RegisterActivityBinding
 import com.example.puctime.infra.FirebaseMethods
 import com.example.puctime.ui.main.MainScreenActivity
-import com.example.puctime.ui.models.User
+import com.example.puctime.models.User
 import com.example.puctime.utils.Utils
 import com.google.firebase.FirebaseApp
 

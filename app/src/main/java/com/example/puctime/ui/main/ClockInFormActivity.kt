@@ -13,7 +13,7 @@ import com.akexorcist.snaptimepicker.SnapTimePickerDialog
 import com.example.puctime.R
 import com.example.puctime.databinding.ActivityClockInFormBinding
 import com.example.puctime.infra.FirebaseMethods
-import com.example.puctime.ui.models.Clockin
+import com.example.puctime.models.Clockin
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase

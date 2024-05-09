@@ -1,20 +1,23 @@
 package com.example.puctime.ui.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.puctime.R
 import com.example.puctime.ui.interfaces.OnItemClickListener
-import com.example.puctime.ui.models.Clockin
+import com.example.puctime.models.Clockin
 import java.sql.Timestamp
 import java.time.Instant
 import java.time.Instant.now
 
-class DailyClockInAdapter : RecyclerView.Adapter<DailyClockInAdapter.CardViewHolder>() {
+class DailyClockInAdapter(private val context: Context) : RecyclerView.Adapter<DailyClockInAdapter.CardViewHolder>() {
 
     private val clockInList = ArrayList<Clockin>()
     private var itemClickListener: OnItemClickListener? = null
@@ -37,9 +40,18 @@ class DailyClockInAdapter : RecyclerView.Adapter<DailyClockInAdapter.CardViewHol
         holder.dayOfTheWeekText.text = currentItem.diaDaSemana
         holder.checkInText.text = currentItem.horarioInicio
         holder.checkOutText.text = currentItem.horarioTermino
-        holder.itemView.setOnClickListener{ view ->
 
-//            Toast.makeText(view.context, "Hash: ${clockInList[position].id}", Toast.LENGTH_SHORT).show()
+        val cardView = holder.itemView.findViewById<CardView>(R.id.card_view_item)
+
+        if(currentItem.status == "aberto"){
+            cardView.setBackgroundColor(ContextCompat.getColor(context, R.color.opened_clockin_color))
+        }
+
+        if(currentItem.status == "fechado"){
+            cardView.setBackgroundColor(ContextCompat.getColor(context, R.color.closed_clockin_color))
+        }
+
+        holder.itemView.setOnClickListener{ view ->
             itemClickListener?.onItemClick(currentItem)
         }
     }
@@ -89,6 +101,7 @@ class DailyClockInAdapter : RecyclerView.Adapter<DailyClockInAdapter.CardViewHol
         return "Sábado"
 
     }
+
 
 
 }
