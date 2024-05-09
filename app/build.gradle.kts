@@ -63,7 +63,13 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.4.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.4.0")
+    implementation("com.google.firebase:firebase-database-ktx")
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9")
+
+    implementation("androidx.cardview:cardview:1.0.0")
     // SnapTimePicker -> time picker com scroll
     implementation("com.akexorcist:snap-time-picker:1.0.3")
 }
