@@ -1,7 +1,6 @@
 package com.example.puctime.infra.repository
 
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.puctime.infra.FirebaseMethods
@@ -97,9 +96,9 @@ class ClockinRepository {
 
     fun saveClockinRegister(clockin : Clockin) : String{
 
-        if(validateTimeClockIn(clockin)){
+        val flag = validateTimeClockIn(clockin)
 
-            var result = ""
+        if(flag){
 
             val saveClockInRef = postMethodDbRef.push()
             val instantClockinRegistered = now()
@@ -109,15 +108,13 @@ class ClockinRepository {
 
             saveClockInRef.setValue(clockIn.toMap())
                 .addOnSuccessListener {
-                    result = "true"
                     Log.i("RegistroClockin", "Ponto batido e registrado com sucesso!")
                 }
                 .addOnFailureListener { error ->
-                    result = "registerClockinFail"
                     Log.i("RegistroClockin", "Erro ao registrar o ponto batido ${error}")
                 }
 
-            return result
+            return "true"
 
         } else {
             return "Fora de horário"
@@ -131,20 +128,22 @@ class ClockinRepository {
         val arrivalTimeWithTollerance = getArrivalTimeWithTolerance(clockIn)
 
         return now in clockIn..arrivalTimeWithTollerance
-        //now >= clockIn && now<= arrivalTimeWithTollerance
-
     }
 
     private fun getInstantTime() : Timestamp{
-        //Thu May 09   1   3  : 2   0  :  2  4 spc G  M  T spc 2 0 2 4
-        //012345678910 11 12 13 14 15 16 17 18 19 20 21 22 23  24 25
+        // Thu May 09 13:52:15 GMT-03:00 2024
+        // hour: startIndex = 11 - endIndex = 13 (end is excluded)
+        // min: startIndex = 14 - endIndex = 16 (end is excluded)
+        // year: startIndex = 30 ou (melhor) length - 4
 
         val calendar = Calendar.getInstance()
 
         val now = Timestamp.from(now()).toString()
+        val length = now.length
+
         val hour = now.substring(11, 13).toInt()
         val minute = now.substring(14, 16).toInt()
-        val year = now.substring(24).toInt()
+        val year = now.substring(length - 4).toInt()
 
         calendar.set(Calendar.YEAR, year)
         calendar.set(Calendar.HOUR_OF_DAY, hour)
@@ -161,10 +160,12 @@ class ClockinRepository {
     private fun getClockInTime(clockin: Clockin): Timestamp {
 
         val calendar = Calendar.getInstance()
+        val length = clockin.dataCriacaoAponamento.length
+
 
         val clockInHour = clockin.horarioInicio.substring(0, 2).toInt()
         val clockInMinute = clockin.horarioInicio.substring(3).toInt()
-        val year = clockin.dataCriacaoAponamento.substring(24).toInt()
+        val year = clockin.dataCriacaoAponamento.substring(length - 4).toInt()
 
         calendar.set(Calendar.YEAR, year)
         calendar.set(Calendar.HOUR_OF_DAY, clockInHour)
@@ -179,10 +180,11 @@ class ClockinRepository {
     private fun getClockOutTime(clockin: Clockin): Timestamp {
 
         val calendar = Calendar.getInstance()
+        val length = clockin.dataCriacaoAponamento.length
 
         val clockOutHour = clockin.horarioTermino.substring(0, 2).toInt()
         val clockOutMinute = clockin.horarioTermino.substring(3).toInt()
-        val year = clockin.dataCriacaoAponamento.substring(24).toInt()
+        val year = clockin.dataCriacaoAponamento.substring(length - 4).toInt()
 
         calendar.set(Calendar.YEAR, year)
         calendar.set(Calendar.HOUR_OF_DAY, clockOutHour)

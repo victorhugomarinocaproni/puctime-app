@@ -2,6 +2,7 @@ package com.example.puctime.ui.fragments
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -85,7 +86,10 @@ class CalendarOverviewFragment : Fragment() {
 
         button.setOnClickListener {
             progressView.visibility = View.VISIBLE
+
             val repositoryAnswer = viewModel.saveClockInRegister(clockin)
+
+            Log.i("RegistroClockin", "Fragment: $repositoryAnswer")
 
             when (repositoryAnswer) {
                 "true" -> {

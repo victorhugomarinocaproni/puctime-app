@@ -1,5 +1,6 @@
 package com.example.puctime.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import com.example.puctime.infra.repository.ClockinRepository
@@ -12,6 +13,8 @@ class ClockinViewModel : ViewModel() {
     val allHashCodes: LiveData<List<String>> = repository.getAllClockinHashCodes()
 
     fun saveClockInRegister(clockin : Clockin) : String{
-        return repository.saveClockinRegister(clockin)
+        val answer = repository.saveClockinRegister(clockin)
+        Log.i("RegistroClockin", answer)
+        return answer
     }
 }
