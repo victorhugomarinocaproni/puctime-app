@@ -11,7 +11,7 @@
 
     <!--  Cores do CardView -->
     <color name="medium_gray">#9F9D9D</color>
-    <color name="opened_clockin_color">#575711</color>
-    <color name="closed_clockin_color">#115011</color>
+    <color name="opened_clockin_color">#FF5722</color>
+    <color name="closed_clockin_color">#4CAF50</color>
 
 </resources>

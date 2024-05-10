@@ -10,7 +10,6 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -27,7 +26,7 @@ import com.google.android.material.button.MaterialButton
 class CalendarOverviewFragment : Fragment() {
 
     private lateinit var viewModel: ClockinViewModel
-    private var myAdapter: DailyClockInAdapter ?= null
+    private var myAdapter: DailyClockInAdapter? = null
     private var sheetDialog: BottomSheetDialog? = null
     private lateinit var progressView: ProgressBar
 
@@ -60,9 +59,7 @@ class CalendarOverviewFragment : Fragment() {
 
         progressView.visibility = View.VISIBLE
 
-        viewModel.allClockin.observe(viewLifecycleOwner, Observer { clockinList ->
-
-
+        viewModel.allClockin.observe(viewLifecycleOwner) { clockinList ->
             val adapter = myAdapter
             adapter?.setData(clockinList)
             progressView.visibility = View.GONE
@@ -71,7 +68,7 @@ class CalendarOverviewFragment : Fragment() {
                     showBottomSheetDialog(clockin)
                 }
             })
-        })
+        }
 
         createNewClockinButton.setOnClickListener {
             val intent = Intent(requireContext(), ClockInFormActivity::class.java)
@@ -80,39 +77,98 @@ class CalendarOverviewFragment : Fragment() {
     }
 
     fun showBottomSheetDialog(clockin: Clockin) {
+
         sheetDialog = BottomSheetDialog(requireContext(), R.style.BottomSheetStyle)
-        val view = LayoutInflater.from(requireContext()).inflate(
-            R.layout.bottom_sheet_layout,
-            (ConstraintLayout(requireContext())).findViewById(R.id.bottom_sheet)
-        )
-        sheetDialog?.setContentView(view)
-        sheetDialog?.show()
-        val button = view.findViewById<MaterialButton>(R.id.register_clockin_button)
 
-        button.setOnClickListener {
-            progressView.visibility = View.VISIBLE
+        val view: View
 
-            val repositoryAnswer = viewModel.saveClockInRegister(clockin)
+        when (clockin.status) {
+            "" -> {
 
-            Log.i("RegistroClockin", "Fragment: $repositoryAnswer")
+                view = LayoutInflater.from(requireContext()).inflate(
+                    R.layout.bottom_sheet_layout_clockin,
+                    (ConstraintLayout(requireContext())).findViewById(R.id.bottom_sheet_clockin))
 
-            when (repositoryAnswer) {
-                "true" -> {
-                    progressView.visibility = View.GONE
-                    Toast.makeText(requireContext(), "Ponto batido com sucesso!", Toast.LENGTH_SHORT).show()
-                    dismissBottomSheetDialog()
+                val clockInButton = view.findViewById<MaterialButton>(R.id.register_clockin_button)
+                clockInButton.setOnClickListener {
+                    progressView.visibility = View.VISIBLE
+                    registerClockIn(clockin)
                 }
-                "Fora de horário" -> {
-                    progressView.visibility = View.GONE
-                    Toast.makeText(requireContext(), "Fora de Horário", Toast.LENGTH_SHORT).show()
+
+            }
+            "aberto" -> {
+                view = LayoutInflater.from(requireContext()).inflate(
+                    R.layout.bottom_sheet_layout_clockout,
+                    (ConstraintLayout(requireContext())).findViewById(R.id.bottom_sheet_clockout))
+
+                val clockOutButton = view.findViewById<MaterialButton>(R.id.register_clockout_button)
+                clockOutButton.setOnClickListener {
+                    registerClockOut(clockin)
                 }
-                else -> {
-                    progressView.visibility = View.GONE
-                    Toast.makeText(requireContext(), "Erro ao bater ponto!", Toast.LENGTH_SHORT).show()
-                }
+            }
+            else -> {
+                view = LayoutInflater.from(requireContext()).inflate(
+                    R.layout.bottom_sheet_layout_already_registered,
+                    (ConstraintLayout(requireContext())).findViewById(R.id.bottom_sheet_already_registered))
             }
         }
 
+        sheetDialog?.setContentView(view)
+        sheetDialog?.show()
+    }
+
+    private fun registerClockIn(clockin: Clockin) {
+        val repositoryAnswer = viewModel.saveClockInRegister(clockin)
+
+        Log.i("RegistroClockin", "Fragment: $repositoryAnswer")
+
+        when (repositoryAnswer) {
+            "true" -> {
+                progressView.visibility = View.GONE
+                Toast.makeText(
+                    requireContext(),
+                    "Entrada registrada com sucesso!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                dismissBottomSheetDialog()
+            }
+
+            "Fora de horário" -> {
+                progressView.visibility = View.GONE
+                Toast.makeText(requireContext(), "Fora de Horário", Toast.LENGTH_SHORT).show()
+            }
+
+            else -> {
+                progressView.visibility = View.GONE
+                Toast.makeText(requireContext(), "Erro ao registrada entrada!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+    }
+
+    private fun registerClockOut(clockin: Clockin){
+
+        val repositoryAnswer = viewModel.saveClockOutRegister(clockin)
+
+        Log.i("RegistroClockin", "ClockOut repo answer: $repositoryAnswer")
+
+        when (repositoryAnswer) {
+            "true" -> {
+                progressView.visibility = View.GONE
+                Toast.makeText(
+                    requireContext(),
+                    "Saida registrada com sucesso!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                dismissBottomSheetDialog()
+            }
+
+            else -> {
+                progressView.visibility = View.GONE
+                Toast.makeText(requireContext(), "Fora de Horário!", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
     }
 
     private fun dismissBottomSheetDialog() {

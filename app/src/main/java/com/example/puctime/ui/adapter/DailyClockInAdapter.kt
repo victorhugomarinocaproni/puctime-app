@@ -34,8 +34,6 @@ class DailyClockInAdapter(private val context: Context) : RecyclerView.Adapter<D
 
         val currentItem = clockInList[position]
 
-        Log.i("teste", "Item: $currentItem")
-
         holder.cardTitle.text = currentItem.nome
         holder.dayOfTheWeekText.text = currentItem.diaDaSemana
         holder.checkInText.text = currentItem.horarioInicio
@@ -45,6 +43,7 @@ class DailyClockInAdapter(private val context: Context) : RecyclerView.Adapter<D
 
         if(currentItem.status == "aberto"){
             cardView.setBackgroundColor(ContextCompat.getColor(context, R.color.opened_clockin_color))
+            cardView.radius = context.resources.getDimensionPixelSize(R.dimen.card_view_radius).toFloat()
         }
 
         if(currentItem.status == "fechado"){
