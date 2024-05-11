@@ -174,6 +174,11 @@ class CalendarOverviewFragment : Fragment() {
     private fun dismissBottomSheetDialog() {
         sheetDialog?.dismiss()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 }
 
 
