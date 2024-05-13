@@ -38,5 +38,9 @@
         <item>Sábado</item>
     </string-array>
 
+    <!-- Notificação -->
+    <string name="channel_name">principal</string>
+    <string name="channel_description">canal de testes</string>
+
 
 </resources>
