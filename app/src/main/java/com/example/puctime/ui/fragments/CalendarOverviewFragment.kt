@@ -125,8 +125,8 @@ class CalendarOverviewFragment : Fragment() {
     }
 
     private fun checkIfUserIsInValidLocation(latitude: Double, longitude: Double) : Boolean{
-        val latitudeArea = 37.4220936
-        val longitudeArea = -122.083922
+        val latitudeArea = -22.835194046406773
+        val longitudeArea = -47.049244372907616
 
         val distance = getDistance(latitude, longitude, latitudeArea, longitudeArea)
         return distance <= 1000f
@@ -139,9 +139,9 @@ class CalendarOverviewFragment : Fragment() {
         //-22.835194046406773
         //-47.049244372907616
 
-        //EMULADOR VH:
-        //lat =    37.4220936
-        //long =  -122.083922
+        //FEEC Unicamp:
+        //lat = -22.821065101338608
+        //long = -47.06648110616204
 
     }
 
